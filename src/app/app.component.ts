@@ -4,7 +4,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { AboutPage } from '../pages/about/about';
 import { ListPage } from '../pages/list/list';
+import { EventsPage } from '../pages/events/events';
+import { ContactsPage } from '../pages/contacts/contacts';
+import { DirectionsPage } from '../pages/directions/directions';
+import { CareerPage } from '../pages/career/career';
+import { ClubsPage } from '../pages/clubs/clubs';
+import { SponsorsPage } from '../pages/sponsors/sponsors';
+import { FAQPage } from '../pages/faq/faq';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,9 +30,16 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'About', component: AboutPage },
+      { title: 'List', component: ListPage },
+      { title: 'Today in CS', component: EventsPage },
+      { title: 'Contacts', component: ContactsPage },
+      { title: 'Directions', component: DirectionsPage },
+      { title: 'Working Opportunities', component: CareerPage },
+      { title: 'Student Clubs', component: ClubsPage },
+      { title: 'CS Friends', component: SponsorsPage },
+      { title: 'FAQ', component: FAQPage} 
     ];
-
   }
 
   initializeApp() {
