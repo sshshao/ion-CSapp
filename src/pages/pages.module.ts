@@ -12,8 +12,7 @@ import { CareerPage } from './career/career';
 import { ClubsPage } from './clubs/clubs';
 import { SponsorsPage } from './sponsors/sponsors';
 import { FAQPage } from './faq/faq';
-import { HomeTab1, HomeTab2, HomeTab3 } from './home/home_tabs';
-import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts/contacts_tabs';
+import { ContactsTab } from './contacts/contacts_tabs';
 
 
 @NgModule({
@@ -28,12 +27,7 @@ import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts/contacts_ta
     ClubsPage,
     SponsorsPage,
     FAQPage,
-    HomeTab1,
-    HomeTab2,
-    HomeTab3,
-    ContactsTab1,
-    ContactsTab2,
-    ContactsTab3
+    ContactsTab
   ],
   imports: [
     CommonModule,
@@ -44,14 +38,10 @@ import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts/contacts_ta
     IonicModule.forRoot(ContactsPage),
     IonicModule.forRoot(DirectionsPage),
     IonicModule.forRoot(CareerPage),
+    IonicModule.forRoot(ClubsPage),
     IonicModule.forRoot(SponsorsPage),
     IonicModule.forRoot(FAQPage),
-    IonicModule.forRoot(HomeTab1),
-    IonicModule.forRoot(HomeTab2),
-    IonicModule.forRoot(HomeTab3),
-    IonicModule.forRoot(ContactsTab1),
-    IonicModule.forRoot(ContactsTab2),
-    IonicModule.forRoot(ContactsTab3)
+    IonicModule.forRoot(ContactsTab)
   ],
   exports: [
     HomePage,
@@ -64,12 +54,7 @@ import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts/contacts_ta
     ClubsPage,
     SponsorsPage,
     FAQPage,
-    HomeTab1,
-    HomeTab2,
-    HomeTab3,
-    ContactsTab1,
-    ContactsTab2,
-    ContactsTab3
+    ContactsTab
   ]
 })
 export class PagesModule {}

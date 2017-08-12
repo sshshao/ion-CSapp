@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Contacts</ion-title>
+  </ion-navbar>
+</ion-header>
+      
+<ion-content padding>
+    <ion-card class="contact-card" *ngFor="let card of contacts_info">
+        <img [src]="card.photo" />
+        <div class="contact-name" [innerHTML]="card.name"></div>
+        <div class="contact-title" [innerHTML]="card.title"></div>
+    </ion-card>
+</ion-content>

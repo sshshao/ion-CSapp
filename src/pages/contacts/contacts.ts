@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts_tabs';
+import { ContactsTab } from './contacts_tabs';
 
 @Component({
   selector: 'page-contacts',
@@ -7,14 +7,14 @@ import { ContactsTab1, ContactsTab2, ContactsTab3 } from './contacts_tabs';
 })
 export class ContactsPage {
 
-	tab1: any;
-	tab2: any;
-	tab3: any;
+	tab_faculty: any;
+	tab_staff: any;
+	tab_advisor: any;
 
   constructor() {
-  	this.tab1 = ContactsTab1;
-  	this.tab2 = ContactsTab2;
-  	this.tab3 = ContactsTab3;
+  	this.tab_faculty = ContactsTab;
+  	this.tab_staff = ContactsTab;
+  	this.tab_advisor = ContactsTab;
   }
 
 }

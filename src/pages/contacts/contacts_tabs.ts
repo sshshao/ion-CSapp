@@ -1,46 +1,38 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
-	template: `
-  		<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-</ion-content>`
+	templateUrl: 'contacts_tab.html'
 })
-export class ContactsTab1{}
+export class ContactsTab{
 
-@Component({
-	template: `
-  		<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home2</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-</ion-content>`
-})
-export class ContactsTab2{}
+  type: Number;
+  contacts_info: any;
 
-@Component({
-	template: `
-  		<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home3</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding>
-</ion-content>`
-})
-export class ContactsTab3{}
+  constructor(public params: NavParams, public http: Http) {
+    this.getData(parseInt(params.data));
+  }
+
+  getData(type: number) {
+    var path;
+    switch(type) {
+      case 0:
+        path = 'assets/data/contacts/faculty_info.json';
+        break;
+      case 1:
+        path = 'assets/data/contacts/staff_info.json';
+        break;
+      case 2:
+        path = 'assets/data/contacts/advisor_info.json';
+        break;
+      default:
+        break;
+    }
+
+    this.http.get(path).map(res => res.json()).subscribe(data => {
+      this.contacts_info = data;
+    })
+  }
+}
