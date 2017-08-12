@@ -8,9 +8,21 @@
 </ion-header>
       
 <ion-content padding>
-    <ion-card class="contact-card" *ngFor="let card of contacts_info">
-        <img [src]="card.photo" />
-        <div class="contact-name" [innerHTML]="card.name"></div>
-        <div class="contact-title" [innerHTML]="card.title"></div>
-    </ion-card>
+  <ion-list>
+      <ion-grid no-padding>
+        <ion-row *ngFor="let row of cards">
+          <ion-col col-6 *ngFor="let card of row">
+
+            <ion-card (click)="cardTapped($event, item)">
+              <div class="card-content">
+                <img [src]="card.photo" />
+                <div class="contact-name"><b>{{card.name}}</b></div>
+                <div class="contact-title">{{card.title}}</div>
+              </div>
+
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-list>
 </ion-content>

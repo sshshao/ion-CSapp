@@ -13,6 +13,7 @@ import { ClubsPage } from './clubs/clubs';
 import { SponsorsPage } from './sponsors/sponsors';
 import { FAQPage } from './faq/faq';
 import { ContactsTab } from './contacts/contacts_tabs';
+import { ContactsDetailPage } from './contacts/contacts_detail';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ContactsTab } from './contacts/contacts_tabs';
     ClubsPage,
     SponsorsPage,
     FAQPage,
-    ContactsTab
+    ContactsTab,
+    ContactsDetailPage
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ContactsTab } from './contacts/contacts_tabs';
     IonicModule.forRoot(ClubsPage),
     IonicModule.forRoot(SponsorsPage),
     IonicModule.forRoot(FAQPage),
-    IonicModule.forRoot(ContactsTab)
+    IonicModule.forRoot(ContactsTab),
+    IonicModule.forRoot(ContactsDetailPage)
   ],
   exports: [
     HomePage,
@@ -54,7 +57,8 @@ import { ContactsTab } from './contacts/contacts_tabs';
     ClubsPage,
     SponsorsPage,
     FAQPage,
-    ContactsTab
+    ContactsTab,
+    ContactsDetailPage
   ]
 })
 export class PagesModule {}
