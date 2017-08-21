@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

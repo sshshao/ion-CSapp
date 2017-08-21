@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { ContactsTab } from './contacts_tabs';
+import { NavParams } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-contacts-detail',
   templateUrl: 'contacts_detail.html'
 })
 export class ContactsDetailPage {
+  card: JSON;
 
-  constructor() {
-    
+  constructor(public navParams: NavParams) {
+    this.card = navParams.get('card');
   }
 
 }

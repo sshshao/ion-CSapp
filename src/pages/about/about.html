@@ -7,14 +7,23 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content no-bounce padding>
+    <div class="content-container">
+        <div class="about-description">
+            <p><b>Department of Computer Science</b>
+                <br /><br />
+                The National Research Council ranks the Department of Computer Science(CS) among the top 10% of computer science programs in the United States. A dozen world-class centers and institutes are under the leadership of renowned faculty, many of whom are ACM, IEEE, and Sloan Fellows; NSF CAREER or industry (IBM, Google, Microsoft) awardees. CS students gain the competitive edge in areas such as systems and security, visual computing, mobile applications, big data, human-computer interaction, computer architecture, concurrency, and software engineering.</p>
+        </div>
+
+        <ion-fab left bottom>
+            <button ion-fab color="light"><ion-icon name="arrow-dropright"></ion-icon></button>
+            <ion-fab-list side="right">
+                <a href="https://www.cs.stonybrook.edu/"><button ion-fab><ion-icon name="home"></ion-icon></button></a>
+                <a href="https://twitter.com/sbucompsc"><button ion-fab><ion-icon name="logo-twitter"></ion-icon></button></a>
+                <a href="https://www.facebook.com/stonybrookucompsc"><button ion-fab><ion-icon name="logo-facebook"></ion-icon></button></a>
+                <a href="https://www.instagram.com/stonybrookcs/"><button ion-fab><ion-icon name="logo-instagram"></ion-icon></button></a>
+                <a href="https://www.youtube.com/user/SBUCS"><button ion-fab><ion-icon name="logo-youtube"></ion-icon></button></a>
+            </ion-fab-list>
+        </ion-fab>
+    </div>
 </ion-content>

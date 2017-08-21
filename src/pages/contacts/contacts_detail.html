@@ -7,5 +7,49 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content no-bounce>
+<ion-content padding>
+    <div *ngIf="card">
+        <div class="card-header">
+            <div class="card-icon">
+                <img src="{{card.photo}}" />
+            </div>
+            <div class="card-header-text">
+                <h2>{{card.name}}</h2>
+            </div>
+            <div class="card-header-jobtitle">
+                <p>{{card.title}}</p>
+            </div>
+        </div>
+    </div>
+            
+        <ion-list class="card-detail">
+            <ion-item *ngIf="card.office" class="card-office-info">
+                    <h6 class="detail-title">OFFICE</h6>
+                    <p class="detail-context">{{card.office}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.office_hour" class="card-hour-info">
+                <h6 class="detail-title">OFFICE HOUR</h6>
+                <p class="detail-context">{{card.office_hour}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.email" class="card-email-info">
+                <h6 class="detail-title">EMAIL</h6>
+                <p class="detail-context">{{card.email}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.phone" class="card-phone-info">
+                <h6 class="detail-title">PHONE</h6>
+                <p class="detail-context">{{card.phone}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.website" class="card-web-info">
+                <h6 class="detail-title">WEBSITE</h6>
+                <p class="detail-context">{{card.website}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.interest" class="card-interest-info">
+                <h6 class="detail-title">INTERESTS</h6>
+                <p class="detail-context">{{card.interest}}</p>
+            </ion-item>
+            <ion-item *ngIf="card.teaching" class="card-teaching-info">
+                <h6 class="detail-title">TEACHING</h6>
+                <p class="detail-context">{{card.teaching}}</p>
+            </ion-item>
+        </ion-list>
 </ion-content>
