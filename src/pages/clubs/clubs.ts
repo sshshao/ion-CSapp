@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -7,9 +9,18 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'clubs.html'
 })
 export class ClubsPage {
+  
+  clubs: any;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public http: Http) {
+  	this.getClubsData();
   }
 
+  getClubsData() {
+  	this.http.get('assets/data/clubs/clubs_info.json')
+  	  .map(res => res.json())
+  	  .subscribe(data => {
+  		this.clubs = data;
+  	});
+  }
 }

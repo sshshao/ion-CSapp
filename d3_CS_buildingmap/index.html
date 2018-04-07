@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    button {
+        display: inline-block;
+        margin: 0 10px 0 0;
+        padding: 10px 35px;
+        font-size: 14px;
+        line-height: 1.8;
+        color: #fff;
+        background-color: #CC0000;
+        text-shadow: -1px 1px #990000;
+        border: none;
+    }
+
+    .st0 {
+        fill: #31ff9f;
+        fill-opacity: 0.1;
+        stroke: #00B3BC;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        enable-background: new 0 0 1568.2 2477.5;
+    }
+    
+    .selected {
+        fill: #fffa00;
+        fill-opacity: 0.5;
+    }
+    
+    .navbar {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        overflow: hidden;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+    }
+    
+    .map {
+        margin-top: 30px;
+    }
+    
+    #info_box { 
+        background-color: white;
+        padding: 3px 5px;
+        border: 1px solid black;
+        text-align: center;
+    }
+    
+    html {
+	   font-family: sans-serif;
+    }
+</style>
+<body>
+<script src="d3.min.js"></script>
+    
+    <div class="navbar">
+        <button onclick="loadFloor(1)">FLOOR 1</button>
+        <button onclick="loadFloor(2)">FLOOR 2</button>
+        <button onclick="loadFloor(3)">FLOOR 3</button>
+    </div>
+    <div class="map">
+        <div id="floor_map"></div>
+        <div id="info_box"></div>
+    </div>
+<script>
+    var floorMapView = d3.select("body").select("#floor_map");
+    var infoBox = d3.select("body").select("#info_box")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    .style("opacity", "0");
+    var mapG;
+    var boxG;
+    
+    function loadFloor(floor) {
+        var width;
+        var height;
+        var viewBox;
+        var baseImg;
+        var boxSVG;
+        
+        var scale = 1.0;
+        
+        floorMapView.selectAll("svg").remove();
+        
+        switch(floor) {
+            case 1:
+                width = 1568.2;
+                height = 2477.5;
+                baseImg = "FF201-schematic.jpg";
+                boxSVG = "floor1_info.json";
+                break;
+            case 2:
+                width = 1632;
+                height = 2502;
+                baseImg = "FF202-schematic.jpg";
+                boxSVG = "floor2_info.json";
+                break;
+            case 3:
+                width = 966;
+                height = 1932;
+                baseImg = "FF203-schematic.jpg";
+                boxSVG = "floor3_info.json";
+                break;
+        } 
+        viewBox = "0 0 " + width + " " + height;
+        
+        var svg = floorMapView.append("svg")
+                .attr("width", width)  
+                .attr("height", height);
+        
+        //group for base map
+        mapG = svg.append("g")
+                    .attr("id", "mapG");
+        //group for the schematic layer, contains a svg node
+        boxG = svg.append("g")
+                    .attr("id", "boxG");
+
+        var buildingImg = mapG.append("svg:image")
+                            .attr("xlink:href",baseImg)
+                            .attr("x", 0)
+                            .attr("y", 0)
+                            .attr("width", scale*100 + "%")
+                            .attr("height", scale*100 + "%")
+                            .attr("preserveAspectRatio", "none")
+                            .on('click', clearSelection);
+
+        var innerSVG = boxG.append("svg")
+                            .attr("width", "100%")
+                            .attr("viewBox", viewBox)
+                            .append("g")
+                            .attr("transform", "scale(" + scale + ")");
+
+        d3.json(boxSVG, function(error, dataset) {
+            if(error)   return console.error(error);
+
+            innerSVG.selectAll("polygon")
+                    .data(dataset)
+                    .enter()
+                    .append("polygon")
+                    .attr("points", function(d) { return d.points; })
+                    .classed("st0", true)
+                    .on('click', roomClicked);
+
+            innerSVG.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d) { return d.x; })
+                    .attr("y", function(d) { return d.y; })
+                    .attr("width", function(d) { return d.width; })
+                    .attr("height", function(d) { return d.height; })
+                    .classed("st0", true)
+                    .on('click', roomClicked);
+        });
+    }
+    
+    function roomClicked(d) {
+        clearSelection();
+        d3.select(this).classed("selected", true);
+        
+        infoBox.html(format_description(d))
+                .style("top", d3.event.pageY + "px")
+                .style("left", d3.event.pageX + "px");
+        return infoBox.transition()
+                        .duration(50)
+                        .style("opacity", "0.9");
+    }
+
+    function clearSelection() {
+        var innerSVG = boxG.select("svg");
+        innerSVG.selectAll("polygon").classed("selected", false);
+        innerSVG.selectAll("rect").classed("selected", false);
+        
+        return infoBox.style("opacity", "0");
+    }
+    
+    function format_description(d) {
+        var description = "<b> New Computer Science " + d.room 
+                            + "</b><br />" + d.person + "<br />" 
+                            + "Show Contact Info";
+        return description;
+    }
+    
+</script>
+</body>

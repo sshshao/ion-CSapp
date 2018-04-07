@@ -25,23 +25,27 @@ export class HomePage {
 
     //retrieve image sources
   	getGallaryData() {
-  		this.http.get('assets/data/home/gallary.json').map(res => res.json()).subscribe(data => {
-  			this.gallary = data;
+  		this.http.get('assets/data/home/gallary.json')
+        .map(res => res.json())
+        .subscribe(data => {
+    			this.gallary = data;
 
-        //start auto-play after pulling data
-  			this.gallarySlider.update();
-  			setTimeout(() => {
-  				this.gallarySlider.autoplay = 5000;
-  				this.gallarySlider.startAutoplay();
-  			}, 500);
+          //start auto-play after pulling data
+    			this.gallarySlider.update();
+    			setTimeout(() => {
+    				this.gallarySlider.autoplay = 5000;
+    				this.gallarySlider.startAutoplay();
+    			}, 500);
   		});
   	}
 
     //retrieve upcoming events & newst job postings
   	getUpdatesData() {
-  		this.http.get('assets/data/home/sample_data.json').map(res => res.json()).subscribe(data => {
-  			this.event_updates = data;
-  			this.career_updates = data;
+  		this.http.get('assets/data/home/sample_data.json')
+        .map(res => res.json())
+        .subscribe(data => {
+  			  this.event_updates = data;
+  			  this.career_updates = data;
   		});
   	}
 }
